@@ -1,0 +1,1 @@
+:root{--verde-destaque: #81FE88;--verde-pastel: #BFFFC3;--verde-petroleo: #132E35;--grafite: #01080E;--cinza: #3E3E3F;--cinza-escuro: #171d1f;--cinza-medio: #888888;--cinza-claro: #BCBCBC;--offwhite: #E1E1E1;--branco-padrao: #FFFFFF;--fonte: "Prompt", sans-serif}*{margin:0;padding:0;box-sizing:border-box}body{background-color:var(--grafite);font-family:var(--fonte)}
