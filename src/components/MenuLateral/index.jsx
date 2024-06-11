@@ -5,20 +5,37 @@ import Info from "./assets/img-info.svg"
 import Saida from "./assets/img-saida.svg"
 
 import styled from "styled-components"
+import { useEffect, useState } from "react"
 
 const MenuLateral = styled.aside`
     display: flex;
     flex-direction: column;
-    height: 100vh;
     background-color: var(--cinza-escuro);
     padding: 2.5rem 1rem;
-    width: 177px;
-    border-radius: 8px
+    width: 50vw;
+    border-radius: 8px;
+
+    @media (max-width: 420px){
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(50px);
+        width: 100vw;
+        position: fixed;
+        bottom: 0;       
+        height: 10%;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 0;
+        border-radius: 8px 8px 0 0;
+    }
 `
-    
+
 const ListaItensPai = styled.nav`
     display: flex;
     flex-direction: column;
+    @media (max-width: 420px){
+        width: 100%;
+    }
 `
 
 const ListaItens = styled.ul`
@@ -31,6 +48,14 @@ const Itens = styled.li`
     gap: 2rem;
     margin-top: 5rem;
     list-style: none;
+
+    @media (max-width: 420px){
+        flex-direction: row;
+        margin-top: 0;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: space-around;
+    }
 `
 
 const ItemPublicar = styled.a`
@@ -59,12 +84,19 @@ const Item = styled.a`
     gap: 10px;
     list-style: none;
     text-decoration: none;
-    color: var(--cinza-medio)
+    color: var(--cinza-medio);
+    @media (max-width: 420px) {
+        gap: 1px;
+    }
 `
 
 const ImgLogo = styled.img`
     &:hover{
         cursor: pointer;
+    }
+
+    @media (max-width: 420px){
+        display: none;
     }
 `
 function handleLogoClick(){
@@ -72,13 +104,27 @@ function handleLogoClick(){
 }
 
 export default function Sidebar(){
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 420);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 420);
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
+ 
     return(
         <MenuLateral>
             <ImgLogo src={Logo} alt="Logo codeconnect" onClick={handleLogoClick}/>
             <ListaItensPai>
                 <ListaItens>
                     <Itens>
-                        <ItemPublicar href="#">Publicar</ItemPublicar> 
+                        <ItemPublicar href="#">{isMobile ? 'P':'Publicar'}</ItemPublicar> 
                         <Item href="#">
                             <img src={Feed}/>
                             <span>Feed</span>

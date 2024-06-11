@@ -7,20 +7,32 @@ import Ordenacao from './components/Ordenacao'
 import { useEffect, useState } from 'react'
 
 const ContainerApp = styled.div`
-  width: 62vw;
-  margin: 3.5em auto;
+  width: 100%;
+  padding: 3.5em;
   display: flex;
   gap: 1rem;
+
+  @media (max-width: 420px){
+    flex-direction: column-reverse;
+    padding: 0rem;
+  }
 `
 const Div = styled.div`
   flex-grow: 2;
+  @media (max-width:420px){
+    padding: 1rem;
+  }
 `
 const Cards = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: 1fr;
   gap: 1.5rem;
-  flex-wrap: wrap;
+  list-style: none;
+
+  @media (max-width: 768px){
+    grid-template-columns: 1fr;
+  }
 `
 function App() {
 
